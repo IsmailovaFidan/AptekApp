@@ -1,0 +1,16 @@
+C:\Users\User\source\repos\AptekApp\AptekApp\bin\Debug\AptekApp.exe.config
+C:\Users\User\source\repos\AptekApp\AptekApp\bin\Debug\AptekApp.exe
+C:\Users\User\source\repos\AptekApp\AptekApp\bin\Debug\AptekApp.pdb
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.csprojAssemblyReference.cache
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.Form1.resources
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.Properties.Resources.resources
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.csproj.GenerateResource.cache
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.exe
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.pdb
+C:\Users\User\source\repos\AptekApp\AptekApp\bin\Debug\EntityFramework.dll
+C:\Users\User\source\repos\AptekApp\AptekApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User\source\repos\AptekApp\AptekApp\bin\Debug\EntityFramework.xml
+C:\Users\User\source\repos\AptekApp\AptekApp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.csproj.CopyComplete
+C:\Users\User\source\repos\AptekApp\AptekApp\obj\Debug\AptekApp.AddMedicine.resources

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MedicineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Firm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Medicines" Relationship="Self.FK_Medicine_Firms" FromRole="Firms" ToRole="Medicine" />
+  </EntityType>
+  <EntityType Name="Medicine">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Qr_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WithRecept" Type="Byte" />
+    <Property Name="Pro_date" Type="DateTime" Precision="3" />
+    <Property Name="Valid_date" Type="DateTime" Precision="3" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="Firm_id" Type="Int32" />
+    <NavigationProperty Name="Firm" Relationship="Self.FK_Medicine_Firms" FromRole="Medicine" ToRole="Firms" />
+    <NavigationProperty Name="TagMeds" Relationship="Self.FK_TagMed_Medicine" FromRole="Medicine" ToRole="TagMed" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TagMed">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tag_id" Type="Int32" />
+    <Property Name="Medicine_id" Type="Int32" />
+    <NavigationProperty Name="Medicine" Relationship="Self.FK_TagMed_Medicine" FromRole="TagMed" ToRole="Medicine" />
+    <NavigationProperty Name="Tag" Relationship="Self.FK_TagMed_Tags" FromRole="TagMed" ToRole="Tags" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TagMeds" Relationship="Self.FK_TagMed_Tags" FromRole="Tags" ToRole="TagMed" />
+  </EntityType>
+  <Association Name="FK_Medicine_Firms">
+    <End Role="Firms" Type="Self.Firm" Multiplicity="0..1" />
+    <End Role="Medicine" Type="Self.Medicine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Medicine">
+        <PropertyRef Name="Firm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TagMed_Medicine">
+    <End Role="Medicine" Type="Self.Medicine" Multiplicity="0..1" />
+    <End Role="TagMed" Type="Self.TagMed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TagMed">
+        <PropertyRef Name="Medicine_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TagMed_Tags">
+    <End Role="Tags" Type="Self.Tag" Multiplicity="0..1" />
+    <End Role="TagMed" Type="Self.TagMed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tags">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TagMed">
+        <PropertyRef Name="Tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MedicineEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Firms" EntityType="Self.Firm" />
+    <EntitySet Name="Medicines" EntityType="Self.Medicine" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TagMeds" EntityType="Self.TagMed" />
+    <EntitySet Name="Tags" EntityType="Self.Tag" />
+    <AssociationSet Name="FK_Medicine_Firms" Association="Self.FK_Medicine_Firms">
+      <End Role="Firms" EntitySet="Firms" />
+      <End Role="Medicine" EntitySet="Medicines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TagMed_Medicine" Association="Self.FK_TagMed_Medicine">
+      <End Role="Medicine" EntitySet="Medicines" />
+      <End Role="TagMed" EntitySet="TagMeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TagMed_Tags" Association="Self.FK_TagMed_Tags">
+      <End Role="Tags" EntitySet="Tags" />
+      <End Role="TagMed" EntitySet="TagMeds" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
